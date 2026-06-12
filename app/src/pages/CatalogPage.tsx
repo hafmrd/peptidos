@@ -3,11 +3,16 @@ import { useSearchParams } from 'react-router';
 import { Search, SlidersHorizontal, Grid3X3, LayoutList, X } from 'lucide-react';
 import { products, categories, searchProducts, getProductsByCategory } from '../data/products';
 import ProductCard from '../components/ProductCard';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../lib/translations';
+import { categoryLabelEs } from '../lib/productTranslations';
 
 export default function CatalogPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const { lang } = useLanguage();
+  const T = translations[lang].catalog;
 
   const initialFilter = searchParams.get('filter') || 'all';
   const initialSearch = searchParams.get('search') || '';
@@ -17,9 +22,9 @@ export default function CatalogPage() {
   const [sortBy, setSortBy] = useState('featured');
 
   useEffect(() => {
-    document.title = 'Product Catalog — BIOHACKS PHARMACEUTICAL';
+    document.title = `${T.title} — BIOHACKS PHARMACEUTICAL`;
     return () => { document.title = 'BIOHACKS PHARMACEUTICAL'; };
-  }, []);
+  }, [T.title]);
 
   useEffect(() => {
     const filter = searchParams.get('filter') || 'all';
@@ -88,16 +93,16 @@ export default function CatalogPage() {
     setSearchParams(newParams);
   };
 
+  const getCategoryLabel = (c: { key: string; label: string }) =>
+    lang === 'es' ? (categoryLabelEs[c.label] ?? c.label) : c.label;
+
   return (
     <div className="min-h-screen bg-[#F1EFE8] pt-20">
       {/* Header */}
       <div className="bg-[#042C53] py-16">
         <div className="max-w-7xl mx-auto section-padding">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Product Catalog</h1>
-          <p className="text-[#85B7EB]/80 max-w-2xl">
-            Browse our complete collection of 69+ research-grade peptides, blends, and supplies.
-            All products verified by third-party HPLC analysis.
-          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{T.title}</h1>
+          <p className="text-[#85B7EB]/80 max-w-2xl">{T.desc}</p>
         </div>
       </div>
 
@@ -111,12 +116,12 @@ export default function CatalogPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search products..."
+                placeholder={T.searchPlaceholder}
                 className="w-full pl-10 pr-4 py-3 bg-white border border-[#E6F1FB] focus:border-[#378ADD] focus:outline-none text-sm"
               />
             </div>
             <button type="submit" className="px-6 py-3 bg-[#378ADD] text-white text-sm font-medium hover:bg-[#185FA5] transition-colors">
-              Search
+              {T.searchBtn}
             </button>
             {searchQuery && (
               <button
@@ -127,7 +132,7 @@ export default function CatalogPage() {
                   newParams.delete('search');
                   setSearchParams(newParams);
                 }}
-                aria-label="Clear search"
+                aria-label={T.clearSearch}
                 className="px-4 py-3 border border-[#E6F1FB] bg-white text-[#5F5E5A] hover:text-[#042C53] transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -139,20 +144,20 @@ export default function CatalogPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              aria-label="Sort products"
+              aria-label={T.sortLabel}
               className="px-4 py-3 bg-white border border-[#E6F1FB] text-sm text-[#042C53] focus:outline-none focus:border-[#378ADD]"
             >
-              <option value="featured">Featured</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="name">Name A-Z</option>
+              <option value="featured">{T.sortFeatured}</option>
+              <option value="price-low">{T.sortPriceLow}</option>
+              <option value="price-high">{T.sortPriceHigh}</option>
+              <option value="name">{T.sortName}</option>
             </select>
 
             <div className="hidden md:flex border border-[#E6F1FB] bg-white">
               <button
                 type="button"
                 onClick={() => setViewMode('grid')}
-                aria-label="Grid view"
+                aria-label={T.gridView}
                 className={`p-3 transition-colors ${viewMode === 'grid' ? 'bg-[#378ADD] text-white' : 'text-[#5F5E5A] hover:text-[#042C53]'}`}
               >
                 <Grid3X3 className="w-4 h-4" />
@@ -160,7 +165,7 @@ export default function CatalogPage() {
               <button
                 type="button"
                 onClick={() => setViewMode('list')}
-                aria-label="List view"
+                aria-label={T.listView}
                 className={`p-3 transition-colors ${viewMode === 'list' ? 'bg-[#378ADD] text-white' : 'text-[#5F5E5A] hover:text-[#042C53]'}`}
               >
                 <LayoutList className="w-4 h-4" />
@@ -170,7 +175,7 @@ export default function CatalogPage() {
             <button
               type="button"
               onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-              aria-label="Toggle filters"
+              aria-label={T.toggleFilters}
               className="md:hidden p-3 bg-white border border-[#E6F1FB] text-[#5F5E5A]"
             >
               <SlidersHorizontal className="w-4 h-4" />
@@ -188,10 +193,10 @@ export default function CatalogPage() {
               className={`px-4 py-2 text-xs tracking-wider uppercase font-medium transition-all duration-200 border ${
                 activeCategory === c.key
                   ? 'bg-[#042C53] text-white border-[#042C53]'
-                  : 'bg-white text-[#5F5E5A] border-[#E6F1FB] hover:border-[#378ADD] hover:text-[#378ADD]'
+                  : 'bg-white text-[#042C53]/70 border-[#D4E5F5] hover:border-[#378ADD] hover:text-[#378ADD]'
               }`}
             >
-              {c.label}
+              {getCategoryLabel(c)}
             </button>
           ))}
           <button
@@ -200,10 +205,10 @@ export default function CatalogPage() {
             className={`px-4 py-2 text-xs tracking-wider uppercase font-medium transition-all duration-200 border ${
               activeCategory === 'new'
                 ? 'bg-[#378ADD] text-white border-[#378ADD]'
-                : 'bg-white text-[#5F5E5A] border-[#E6F1FB] hover:border-[#378ADD] hover:text-[#378ADD]'
+                : 'bg-white text-[#042C53]/70 border-[#D4E5F5] hover:border-[#378ADD] hover:text-[#378ADD]'
             }`}
           >
-            New Arrivals
+            {T.newArrivals}
           </button>
           <button
             type="button"
@@ -211,18 +216,18 @@ export default function CatalogPage() {
             className={`px-4 py-2 text-xs tracking-wider uppercase font-medium transition-all duration-200 border ${
               activeCategory === 'sale'
                 ? 'bg-red-600 text-white border-red-600'
-                : 'bg-white text-[#5F5E5A] border-[#E6F1FB] hover:border-red-600 hover:text-red-600'
+                : 'bg-white text-[#042C53]/70 border-[#D4E5F5] hover:border-red-600 hover:text-red-600'
             }`}
           >
-            On Sale
+            {T.onSale}
           </button>
         </div>
 
         {/* Results count */}
         <div className="mb-6 text-sm text-[#5F5E5A]">
-          Showing <strong className="text-[#042C53]">{filteredProducts.length}</strong> of {products.length} products
+          {T.showing} <strong className="text-[#042C53]">{filteredProducts.length}</strong> {T.of} {products.length} {T.products}
           {searchQuery && (
-            <span> for "<strong className="text-[#042C53]">{searchQuery}</strong>"</span>
+            <span> {T.for} "<strong className="text-[#042C53]">{searchQuery}</strong>"</span>
           )}
         </div>
 
@@ -230,8 +235,8 @@ export default function CatalogPage() {
         {filteredProducts.length === 0 ? (
           <div className="text-center py-20">
             <Search className="w-12 h-12 text-[#E6F1FB] mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-[#042C53] mb-2">No products found</h3>
-            <p className="text-[#5F5E5A] mb-6">Try adjusting your search or filters.</p>
+            <h3 className="text-lg font-bold text-[#042C53] mb-2">{T.noResults}</h3>
+            <p className="text-[#5F5E5A] mb-6">{T.noResultsDesc}</p>
             <button
               type="button"
               onClick={() => {
@@ -241,7 +246,7 @@ export default function CatalogPage() {
               }}
               className="btn-primary-bio"
             >
-              Clear All Filters
+              {T.clearAll}
             </button>
           </div>
         ) : (

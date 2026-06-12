@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { calcShipping, calcTax, calcGrandTotal } from '../lib/pricing';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../lib/translations';
 
 const shippingSchema = z.object({
   firstName:   z.string().min(1, 'Required'),
@@ -38,6 +40,8 @@ export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
   const [step, setStep] = useState(1);
   const [placed, setPlaced] = useState(false);
+  const { lang } = useLanguage();
+  const T = translations[lang].checkout;
 
   const shipping = calcShipping(totalPrice);
   const tax = calcTax(totalPrice);
@@ -47,17 +51,17 @@ export default function CheckoutPage() {
   const paymentForm  = useForm<PaymentData>({ resolver: zodResolver(paymentSchema) });
 
   useEffect(() => {
-    document.title = 'Checkout — BIOHACKS PHARMACEUTICAL';
+    document.title = `${T.title} — BIOHACKS PHARMACEUTICAL`;
     return () => { document.title = 'BIOHACKS PHARMACEUTICAL'; };
-  }, []);
+  }, [T.title]);
 
   if (items.length === 0 && !placed) {
     return (
       <div className="min-h-screen bg-[#F1EFE8] pt-32 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#042C53] mb-4">Your cart is empty</h1>
-          <p className="text-[#5F5E5A] mb-6">Add items to your cart before checking out.</p>
-          <Link to="/catalog" className="btn-primary-bio">Browse Catalog</Link>
+          <h1 className="text-2xl font-bold text-[#042C53] mb-4">{T.emptyTitle}</h1>
+          <p className="text-[#5F5E5A] mb-6">{T.emptyDesc}</p>
+          <Link to="/catalog" className="btn-primary-bio">{lang === 'en' ? 'Browse Catalog' : 'Ver Catálogo'}</Link>
         </div>
       </div>
     );
@@ -70,15 +74,11 @@ export default function CheckoutPage() {
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-10 h-10 text-green-600" />
           </div>
-          <h1 className="text-3xl font-bold text-[#042C53] mb-4">Order Placed!</h1>
-          <p className="text-[#5F5E5A] mb-2">
-            Thank you for your order. This is a demo checkout — no actual transaction was processed.
-          </p>
-          <p className="text-sm text-[#5F5E5A] mb-8">
-            In production, you would receive an email confirmation with tracking information.
-          </p>
+          <h1 className="text-3xl font-bold text-[#042C53] mb-4">{T.orderedTitle}</h1>
+          <p className="text-[#5F5E5A] mb-2">{T.orderedDesc}</p>
+          <p className="text-sm text-[#5F5E5A] mb-8">{T.orderedNote}</p>
           <Link to="/catalog" className="btn-primary-bio inline-flex items-center gap-2">
-            Continue Shopping <ChevronRight className="w-4 h-4" />
+            {T.continueShopping} <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
@@ -87,6 +87,12 @@ export default function CheckoutPage() {
 
   const inputCls = "w-full px-4 py-3 bg-[#F1EFE8] border border-[#E6F1FB] focus:border-[#378ADD] focus:outline-none text-sm";
   const labelCls = "block text-xs text-[#5F5E5A] tracking-wider uppercase mb-2";
+
+  const steps = [
+    { num: 1, label: T.step1 },
+    { num: 2, label: T.step2 },
+    { num: 3, label: T.step3 },
+  ];
 
   return (
     <div className="min-h-screen bg-[#F1EFE8] pt-20">
@@ -98,21 +104,17 @@ export default function CheckoutPage() {
             className="flex items-center gap-2 text-sm text-[#85B7EB]/80 hover:text-white transition-colors mb-4 w-fit"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Cart
+            {T.backToCart}
           </Link>
-          <h1 className="text-3xl font-bold text-white mb-2">Checkout</h1>
-          <p className="text-[#85B7EB]/80">Complete your order securely.</p>
+          <h1 className="text-3xl font-bold text-white mb-2">{T.title}</h1>
+          <p className="text-[#85B7EB]/80">{T.subtitle}</p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto section-padding py-12">
         {/* Progress */}
         <div className="flex items-center gap-4 mb-12 max-w-2xl">
-          {[
-            { num: 1, label: 'Shipping' },
-            { num: 2, label: 'Payment' },
-            { num: 3, label: 'Review' },
-          ].map((s) => (
+          {steps.map((s) => (
             <div key={s.num} className="flex items-center gap-2 flex-1">
               <div className={`w-8 h-8 flex items-center justify-center text-sm font-bold ${
                 step >= s.num ? 'bg-[#378ADD] text-white' : 'bg-[#E6F1FB] text-[#5F5E5A]'
@@ -139,52 +141,52 @@ export default function CheckoutPage() {
                 onSubmit={shippingForm.handleSubmit(() => setStep(2))}
                 className="bg-white border border-[#E6F1FB] p-8"
               >
-                <h2 className="text-xl font-bold text-[#042C53] mb-6">Shipping Information</h2>
+                <h2 className="text-xl font-bold text-[#042C53] mb-6">{T.shippingTitle}</h2>
                 <div className="grid sm:grid-cols-2 gap-5 mb-5">
                   <div>
-                    <label className={labelCls}>First Name *</label>
+                    <label className={labelCls}>{T.firstName} *</label>
                     <input {...shippingForm.register('firstName')} type="text" className={inputCls} placeholder="John" />
                     <FieldError message={shippingForm.formState.errors.firstName?.message} />
                   </div>
                   <div>
-                    <label className={labelCls}>Last Name *</label>
+                    <label className={labelCls}>{T.lastName} *</label>
                     <input {...shippingForm.register('lastName')} type="text" className={inputCls} placeholder="Doe" />
                     <FieldError message={shippingForm.formState.errors.lastName?.message} />
                   </div>
                 </div>
                 <div className="mb-5">
-                  <label className={labelCls}>Institution / Company</label>
+                  <label className={labelCls}>{T.institution}</label>
                   <input {...shippingForm.register('institution')} type="text" className={inputCls} placeholder="Research Institute LLC" />
                 </div>
                 <div className="mb-5">
-                  <label className={labelCls}>Email *</label>
+                  <label className={labelCls}>{T.email} *</label>
                   <input {...shippingForm.register('email')} type="email" className={inputCls} placeholder="research@institution.com" />
                   <FieldError message={shippingForm.formState.errors.email?.message} />
                 </div>
                 <div className="mb-5">
-                  <label className={labelCls}>Address *</label>
+                  <label className={labelCls}>{T.address} *</label>
                   <input {...shippingForm.register('address')} type="text" className={inputCls} placeholder="123 Research Blvd" />
                   <FieldError message={shippingForm.formState.errors.address?.message} />
                 </div>
                 <div className="grid sm:grid-cols-3 gap-5 mb-8">
                   <div>
-                    <label className={labelCls}>City *</label>
+                    <label className={labelCls}>{T.city} *</label>
                     <input {...shippingForm.register('city')} type="text" className={inputCls} placeholder="City" />
                     <FieldError message={shippingForm.formState.errors.city?.message} />
                   </div>
                   <div>
-                    <label className={labelCls}>State *</label>
+                    <label className={labelCls}>{T.state} *</label>
                     <input {...shippingForm.register('state')} type="text" className={inputCls} placeholder="State" />
                     <FieldError message={shippingForm.formState.errors.state?.message} />
                   </div>
                   <div>
-                    <label className={labelCls}>ZIP *</label>
+                    <label className={labelCls}>{T.zip} *</label>
                     <input {...shippingForm.register('zip')} type="text" className={inputCls} placeholder="12345" />
                     <FieldError message={shippingForm.formState.errors.zip?.message} />
                   </div>
                 </div>
                 <button type="submit" className="btn-primary-bio w-full flex items-center justify-center gap-2">
-                  Continue to Payment <ChevronRight className="w-4 h-4" />
+                  {T.continueToPayment} <ChevronRight className="w-4 h-4" />
                 </button>
               </form>
             )}
@@ -195,19 +197,19 @@ export default function CheckoutPage() {
                 onSubmit={paymentForm.handleSubmit(() => setStep(3))}
                 className="bg-white border border-[#E6F1FB] p-8"
               >
-                <h2 className="text-xl font-bold text-[#042C53] mb-6">Payment Method</h2>
+                <h2 className="text-xl font-bold text-[#042C53] mb-6">{T.paymentTitle}</h2>
                 <div className="space-y-4 mb-8">
-                  {['Credit Card', 'PayPal', 'Bank Transfer', 'Cryptocurrency'].map((method) => (
+                  {T.paymentMethods.map((method, i) => (
                     <label key={method} className="flex items-center gap-4 p-4 border border-[#E6F1FB] hover:border-[#378ADD] cursor-pointer transition-colors">
-                      <input type="radio" name="payment" className="w-4 h-4 accent-[#378ADD]" defaultChecked={method === 'Credit Card'} />
+                      <input type="radio" name="payment" className="w-4 h-4 accent-[#378ADD]" defaultChecked={i === 0} />
                       <span className="flex-1 font-medium text-[#042C53]">{method}</span>
-                      {method === 'Credit Card' && <CreditCard className="w-5 h-5 text-[#378ADD]" />}
+                      {i === 0 && <CreditCard className="w-5 h-5 text-[#378ADD]" />}
                     </label>
                   ))}
                 </div>
 
                 <div className="mb-5">
-                  <label className={labelCls}>Card Number *</label>
+                  <label className={labelCls}>{T.cardNumber} *</label>
                   <input
                     {...paymentForm.register('cardNumber')}
                     type="text"
@@ -219,12 +221,12 @@ export default function CheckoutPage() {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5 mb-8">
                   <div>
-                    <label className={labelCls}>Expiry Date *</label>
+                    <label className={labelCls}>{T.expiry} *</label>
                     <input {...paymentForm.register('expiry')} type="text" className={inputCls} placeholder="MM/YY" />
                     <FieldError message={paymentForm.formState.errors.expiry?.message} />
                   </div>
                   <div>
-                    <label className={labelCls}>CVC *</label>
+                    <label className={labelCls}>{T.cvc} *</label>
                     <input
                       {...paymentForm.register('cvc')}
                       type="password"
@@ -238,10 +240,10 @@ export default function CheckoutPage() {
 
                 <div className="flex gap-3">
                   <button type="button" onClick={() => setStep(1)} className="px-6 py-3 border border-[#E6F1FB] text-[#5F5E5A] font-medium hover:bg-[#F1EFE8] transition-colors">
-                    Back
+                    {T.back}
                   </button>
                   <button type="submit" className="btn-primary-bio flex-1 flex items-center justify-center gap-2">
-                    Review Order <ChevronRight className="w-4 h-4" />
+                    {T.reviewOrder} <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
               </form>
@@ -250,7 +252,7 @@ export default function CheckoutPage() {
             {/* Step 3 — Review */}
             {step === 3 && (
               <div className="bg-white border border-[#E6F1FB] p-8">
-                <h2 className="text-xl font-bold text-[#042C53] mb-6">Review Your Order</h2>
+                <h2 className="text-xl font-bold text-[#042C53] mb-6">{T.reviewTitle}</h2>
 
                 <div className="space-y-4 mb-8">
                   {items.map((item) => (
@@ -268,17 +270,15 @@ export default function CheckoutPage() {
                   <div className="flex items-start gap-3">
                     <Shield className="w-5 h-5 text-[#378ADD] flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-medium text-[#042C53]">Research Use Only Agreement</p>
-                      <p className="text-xs text-[#5F5E5A] mt-1">
-                        By placing this order, you confirm that all products will be used exclusively for lawful laboratory research purposes. You are 21+ years of age and understand these products are not for human consumption.
-                      </p>
+                      <p className="text-sm font-medium text-[#042C53]">{T.ruoLabel}</p>
+                      <p className="text-xs text-[#5F5E5A] mt-1">{T.ruoText}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex gap-3">
                   <button type="button" onClick={() => setStep(2)} className="px-6 py-3 border border-[#E6F1FB] text-[#5F5E5A] font-medium hover:bg-[#F1EFE8] transition-colors">
-                    Back
+                    {T.back}
                   </button>
                   <button
                     type="button"
@@ -286,7 +286,7 @@ export default function CheckoutPage() {
                     className="btn-primary-bio flex-1 flex items-center justify-center gap-2"
                   >
                     <Lock className="w-4 h-4" />
-                    Place Order — ${grandTotal.toFixed(2)}
+                    {T.placeOrder} — ${grandTotal.toFixed(2)}
                   </button>
                 </div>
               </div>
@@ -296,7 +296,7 @@ export default function CheckoutPage() {
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white border border-[#E6F1FB] p-6 sticky top-24">
-              <h2 className="text-lg font-bold text-[#042C53] mb-6">Order Summary</h2>
+              <h2 className="text-lg font-bold text-[#042C53] mb-6">{T.orderSummary}</h2>
 
               <div className="space-y-3 mb-6 max-h-60 overflow-y-auto">
                 {items.map((item) => (
@@ -309,24 +309,24 @@ export default function CheckoutPage() {
 
               <div className="border-t border-[#E6F1FB] pt-4 space-y-3 mb-4">
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#5F5E5A]">Subtotal</span>
+                  <span className="text-[#5F5E5A]">{T.subtotal}</span>
                   <span className="font-medium text-[#042C53]">${totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#5F5E5A]">Shipping</span>
+                  <span className="text-[#5F5E5A]">{T.shipping}</span>
                   <span className="font-medium text-[#042C53]">
-                    {shipping === 0 ? <span className="text-green-600">FREE</span> : `$${shipping.toFixed(2)}`}
+                    {shipping === 0 ? <span className="text-green-600">{T.free}</span> : `$${shipping.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#5F5E5A]">Tax</span>
+                  <span className="text-[#5F5E5A]">{T.tax}</span>
                   <span className="font-medium text-[#042C53]">${tax.toFixed(2)}</span>
                 </div>
               </div>
 
               <div className="border-t border-[#E6F1FB] pt-4">
                 <div className="flex justify-between">
-                  <span className="font-bold text-[#042C53]">Total</span>
+                  <span className="font-bold text-[#042C53]">{T.total}</span>
                   <span className="text-xl font-bold text-[#042C53]">${grandTotal.toFixed(2)}</span>
                 </div>
               </div>
@@ -334,15 +334,15 @@ export default function CheckoutPage() {
               <div className="mt-6 space-y-2">
                 <div className="flex items-center gap-2 text-xs text-[#5F5E5A]">
                   <Lock className="w-3 h-3 text-[#378ADD]" />
-                  Secure SSL encryption
+                  {T.secureSSL}
                 </div>
                 <div className="flex items-center gap-2 text-xs text-[#5F5E5A]">
                   <Truck className="w-3 h-3 text-[#378ADD]" />
-                  Free shipping over $250
+                  {T.freeShipping}
                 </div>
                 <div className="flex items-center gap-2 text-xs text-[#5F5E5A]">
                   <Snowflake className="w-3 h-3 text-[#378ADD]" />
-                  Cold-chain delivery
+                  {T.coldChain}
                 </div>
               </div>
             </div>

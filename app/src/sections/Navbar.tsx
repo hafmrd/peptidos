@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { Menu, X, ArrowRight, ShoppingCart, Search } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../lib/translations';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -9,6 +11,8 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { totalItems, setIsOpen } = useCart();
+  const { lang, toggle } = useLanguage();
+  const T = translations[lang].nav;
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,13 +35,25 @@ export default function Navbar() {
     }
   };
 
-  const links = [
-    { label: 'Home', href: '/' },
-    { label: 'Catalog', href: '/catalog' },
-    { label: 'Science', href: '/#science' },
-    { label: 'Quality', href: '/#quality' },
-    { label: 'About', href: '/#about' },
-    { label: 'Contact', href: '/#contact' },
+  const handleSectionLink = useCallback((sectionId: string) => {
+    setMenuOpen(false);
+    if (location.pathname === '/') {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 350);
+    }
+  }, [location.pathname, navigate]);
+
+  const navLinks: { label: string; action: () => void }[] = [
+    { label: T.home, action: () => navigate('/') },
+    { label: T.catalog, action: () => navigate('/catalog') },
+    { label: T.science, action: () => handleSectionLink('science') },
+    { label: T.quality, action: () => handleSectionLink('quality') },
+    { label: T.about, action: () => handleSectionLink('about') },
+    { label: T.contact, action: () => handleSectionLink('contact') },
   ];
 
   const isHome = location.pathname === '/';
@@ -69,11 +85,27 @@ export default function Navbar() {
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-8">
-              {links.map((l) => (
-                <Link key={l.label} to={l.href} className="nav-link">
+              {navLinks.map((l) => (
+                <button
+                  key={l.label}
+                  type="button"
+                  onClick={l.action}
+                  className="nav-link"
+                >
                   {l.label}
-                </Link>
+                </button>
               ))}
+
+              {/* Language toggle */}
+              <button
+                type="button"
+                onClick={toggle}
+                aria-label="Toggle language"
+                className="text-white/70 hover:text-white text-xs font-bold tracking-widest border border-white/20 px-2 py-1 hover:border-white/50 transition-colors"
+              >
+                {lang === 'en' ? 'ES' : 'EN'}
+              </button>
+
               <button
                 type="button"
                 onClick={() => setSearchOpen(!searchOpen)}
@@ -85,7 +117,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                aria-label={`Open cart, ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
+                aria-label={`${totalItems}`}
                 className="relative text-white/80 hover:text-white transition-colors"
               >
                 <ShoppingCart className="w-5 h-5" />
@@ -96,7 +128,7 @@ export default function Navbar() {
                 )}
               </button>
               <Link to="/catalog" className="btn-primary-bio text-xs flex items-center gap-2">
-                Shop Now <ArrowRight className="w-4 h-4" />
+                {T.shopNow} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
@@ -104,8 +136,16 @@ export default function Navbar() {
             <div className="lg:hidden flex items-center gap-4">
               <button
                 type="button"
+                onClick={toggle}
+                aria-label="Toggle language"
+                className="text-white/70 hover:text-white text-xs font-bold tracking-widest border border-white/20 px-2 py-1"
+              >
+                {lang === 'en' ? 'ES' : 'EN'}
+              </button>
+              <button
+                type="button"
                 onClick={() => setIsOpen(true)}
-                aria-label={`Open cart, ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
+                aria-label={`${totalItems}`}
                 className="relative text-white"
               >
                 <ShoppingCart className="w-6 h-6" />
@@ -136,19 +176,19 @@ export default function Navbar() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search peptides, blends, supplies..."
+                  placeholder={T.searchPlaceholder}
                   className="flex-1 px-4 py-2 bg-white/10 border border-white/20 text-white placeholder-white/50 text-sm focus:outline-none focus:border-[#378ADD]"
                   autoFocus
                 />
                 <button type="submit" className="px-6 py-2 bg-[#378ADD] text-white text-sm font-medium hover:bg-[#185FA5] transition-colors">
-                  Search
+                  {T.search}
                 </button>
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
                   className="px-4 py-2 text-white/60 hover:text-white text-sm"
                 >
-                  Cancel
+                  {T.cancel}
                 </button>
               </form>
             </div>
@@ -159,21 +199,22 @@ export default function Navbar() {
         {menuOpen && (
           <div className="lg:hidden bg-[#042C53]/98 backdrop-blur-lg border-t border-white/10">
             <div className="section-padding py-6 flex flex-col gap-4">
-              {links.map((l) => (
-                <Link
+              {navLinks.map((l) => (
+                <button
                   key={l.label}
-                  to={l.href}
-                  className="text-white/80 hover:text-white text-sm tracking-widest uppercase py-2 border-b border-white/10"
+                  type="button"
+                  onClick={l.action}
+                  className="text-white/80 hover:text-white text-sm tracking-widest uppercase py-2 border-b border-white/10 text-left"
                 >
                   {l.label}
-                </Link>
+                </button>
               ))}
               <form onSubmit={handleSearch} className="flex gap-2 mt-2">
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search products..."
+                  placeholder={T.searchPlaceholder}
                   className="flex-1 px-4 py-2 bg-white/10 border border-white/20 text-white placeholder-white/50 text-sm focus:outline-none focus:border-[#378ADD]"
                 />
                 <button type="submit" aria-label="Search" className="px-4 py-2 bg-[#378ADD] text-white">
@@ -181,7 +222,7 @@ export default function Navbar() {
                 </button>
               </form>
               <Link to="/catalog" className="btn-primary-bio text-center mt-2">
-                Shop Now
+                {T.shopNow}
               </Link>
             </div>
           </div>

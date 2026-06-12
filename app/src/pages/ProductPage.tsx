@@ -9,31 +9,38 @@ import { getProductById, getProductsByCategory } from '../data/products';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
 import { badgeConfigLg } from '../lib/badgeConfig';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../lib/translations';
+import { getProductLocalized } from '../lib/productTranslations';
 
 export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const product = getProductById(id || '');
+  const rawProduct = getProductById(id || '');
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const { lang } = useLanguage();
+  const T = translations[lang].product;
+
+  const product = rawProduct ? getProductLocalized(rawProduct, lang) : null;
 
   useEffect(() => {
     if (product) {
       document.title = `${product.name} — BIOHACKS PHARMACEUTICAL`;
     } else {
-      document.title = 'Product Not Found — BIOHACKS PHARMACEUTICAL';
+      document.title = `${T.notFound} — BIOHACKS PHARMACEUTICAL`;
     }
     return () => { document.title = 'BIOHACKS PHARMACEUTICAL'; };
-  }, [product]);
+  }, [product, T.notFound]);
 
-  if (!product) {
+  if (!product || !rawProduct) {
     return (
       <div className="min-h-screen bg-[#F1EFE8] pt-32 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#042C53] mb-4">Product Not Found</h1>
-          <p className="text-[#5F5E5A] mb-6">The product you are looking for does not exist.</p>
-          <Link to="/catalog" className="btn-primary-bio">Back to Catalog</Link>
+          <h1 className="text-2xl font-bold text-[#042C53] mb-4">{T.notFound}</h1>
+          <p className="text-[#5F5E5A] mb-6">{T.notFoundDesc}</p>
+          <Link to="/catalog" className="btn-primary-bio">{T.back}</Link>
         </div>
       </div>
     );
@@ -45,19 +52,28 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     addItem({
-      productId: product.id,
-      name: product.name,
-      price: product.price,
-      specs: product.specs,
+      productId: rawProduct.id,
+      name: rawProduct.name,
+      price: rawProduct.price,
+      specs: rawProduct.specs,
       quantity,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+  const discount = rawProduct.originalPrice
+    ? Math.round(((rawProduct.originalPrice - rawProduct.price) / rawProduct.originalPrice) * 100)
     : 0;
+
+  const trustBadgeIcons = [
+    <Shield className="w-4 h-4" />,
+    <Snowflake className="w-4 h-4" />,
+    <Truck className="w-4 h-4" />,
+    <Award className="w-4 h-4" />,
+    <Package className="w-4 h-4" />,
+    <Beaker className="w-4 h-4" />,
+  ];
 
   return (
     <div className="min-h-screen bg-[#F1EFE8] pt-20">
@@ -70,7 +86,7 @@ export default function ProductPage() {
             className="flex items-center gap-2 text-sm text-[#5F5E5A] hover:text-[#042C53] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Catalog
+            {T.back}
           </button>
         </div>
       </div>
@@ -80,18 +96,18 @@ export default function ProductPage() {
           {/* Product Info */}
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              {product.badge && (
-                <span className={`${badgeConfigLg[product.badge].bg} text-white text-xs font-bold tracking-wider px-3 py-1 flex items-center gap-1`}>
-                  {badgeConfigLg[product.badge].icon}
-                  {badgeConfigLg[product.badge].label}
+              {rawProduct.badge && (
+                <span className={`${badgeConfigLg[rawProduct.badge].bg} text-white text-xs font-bold tracking-wider px-3 py-1 flex items-center gap-1`}>
+                  {badgeConfigLg[rawProduct.badge].icon}
+                  {translations[lang].badges[rawProduct.badge as keyof typeof translations['en']['badges']] ?? badgeConfigLg[rawProduct.badge].label}
                 </span>
               )}
-              <span className="text-xs text-[#5F5E5A] tracking-wider uppercase bg-[#F1EFE8] px-3 py-1">
-                {product.categoryLabel}
+              <span className="text-xs text-[#042C53]/70 tracking-wider uppercase bg-[#E6F1FB] px-3 py-1">
+                {rawProduct.categoryLabel}
               </span>
               {discount > 0 && (
                 <span className="text-xs text-white font-bold tracking-wider bg-red-600 px-3 py-1">
-                  SAVE {discount}%
+                  {T.save} {discount}%
                 </span>
               )}
             </div>
@@ -104,11 +120,11 @@ export default function ProductPage() {
             </p>
 
             <div className="flex items-baseline gap-3 mb-8">
-              <span className="text-3xl font-bold text-[#042C53]">${product.price}</span>
-              {product.originalPrice && (
-                <span className="text-xl text-[#5F5E5A] line-through">${product.originalPrice}</span>
+              <span className="text-3xl font-bold text-[#042C53]">${rawProduct.price}</span>
+              {rawProduct.originalPrice && (
+                <span className="text-xl text-[#5F5E5A] line-through">${rawProduct.originalPrice}</span>
               )}
-              <span className="text-sm text-[#5F5E5A]">/ {product.specs}</span>
+              <span className="text-sm text-[#5F5E5A]">/ {rawProduct.specs}</span>
             </div>
 
             {/* Quantity & Add to Cart */}
@@ -145,12 +161,12 @@ export default function ProductPage() {
                 {added ? (
                   <>
                     <CheckCircle2 className="w-5 h-5" />
-                    Added to Cart!
+                    {T.addedToCart}
                   </>
                 ) : (
                   <>
                     <ShoppingCart className="w-5 h-5" />
-                    Add to Cart — ${(product.price * quantity).toFixed(2)}
+                    {T.addToCart} — ${(rawProduct.price * quantity).toFixed(2)}
                   </>
                 )}
               </button>
@@ -158,16 +174,9 @@ export default function ProductPage() {
 
             {/* Trust badges */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-              {[
-                { icon: <Shield className="w-4 h-4" />, text: '>99% Purity' },
-                { icon: <Snowflake className="w-4 h-4" />, text: 'Cold Chain' },
-                { icon: <Truck className="w-4 h-4" />, text: 'Free Shipping $250+' },
-                { icon: <Award className="w-4 h-4" />, text: 'CoA Included' },
-                { icon: <Package className="w-4 h-4" />, text: 'Discreet Packaging' },
-                { icon: <Beaker className="w-4 h-4" />, text: 'HPLC Verified' },
-              ].map((b, i) => (
+              {T.trustBadges.map((b, i) => (
                 <div key={i} className="flex items-center gap-2 text-xs text-[#5F5E5A] bg-white p-3 border border-[#E6F1FB]">
-                  <span className="text-[#378ADD]">{b.icon}</span>
+                  <span className="text-[#378ADD]">{trustBadgeIcons[i]}</span>
                   {b.text}
                 </div>
               ))}
@@ -175,7 +184,7 @@ export default function ProductPage() {
 
             {/* Description */}
             <div className="bg-white p-6 border border-[#E6F1FB] mb-8">
-              <h3 className="text-lg font-bold text-[#042C53] mb-4">Product Description</h3>
+              <h3 className="text-lg font-bold text-[#042C53] mb-4">{T.productDescription}</h3>
               <p className="text-sm text-[#5F5E5A] leading-relaxed">{product.details}</p>
             </div>
           </div>
@@ -185,36 +194,36 @@ export default function ProductPage() {
             <div className="bg-white border border-[#E6F1FB] p-6 mb-6">
               <h3 className="text-lg font-bold text-[#042C53] mb-4 flex items-center gap-2">
                 <Beaker className="w-5 h-5 text-[#378ADD]" />
-                Technical Specifications
+                {T.technicalSpecs}
               </h3>
               <div className="space-y-4">
-                {product.cas && (
+                {rawProduct.cas && (
                   <div className="flex justify-between py-3 border-b border-[#E6F1FB]">
-                    <span className="text-sm text-[#5F5E5A]">CAS Number</span>
-                    <span className="text-sm font-medium text-[#042C53]">{product.cas}</span>
+                    <span className="text-sm text-[#5F5E5A]">{T.casNumber}</span>
+                    <span className="text-sm font-medium text-[#042C53]">{rawProduct.cas}</span>
                   </div>
                 )}
-                {product.molecularWeight && (
+                {rawProduct.molecularWeight && (
                   <div className="flex justify-between py-3 border-b border-[#E6F1FB]">
-                    <span className="text-sm text-[#5F5E5A]">Molecular Weight</span>
-                    <span className="text-sm font-medium text-[#042C53]">{product.molecularWeight}</span>
+                    <span className="text-sm text-[#5F5E5A]">{T.molecularWeight}</span>
+                    <span className="text-sm font-medium text-[#042C53]">{rawProduct.molecularWeight}</span>
                   </div>
                 )}
                 <div className="flex justify-between py-3 border-b border-[#E6F1FB]">
-                  <span className="text-sm text-[#5F5E5A]">Purity</span>
-                  <span className="text-sm font-medium text-[#042C53]">{product.purity}</span>
+                  <span className="text-sm text-[#5F5E5A]">{T.purity}</span>
+                  <span className="text-sm font-medium text-[#042C53]">{rawProduct.purity}</span>
                 </div>
                 <div className="flex justify-between py-3 border-b border-[#E6F1FB]">
-                  <span className="text-sm text-[#5F5E5A]">Form</span>
-                  <span className="text-sm font-medium text-[#042C53]">{product.form}</span>
+                  <span className="text-sm text-[#5F5E5A]">{T.form}</span>
+                  <span className="text-sm font-medium text-[#042C53]">{rawProduct.form}</span>
                 </div>
                 <div className="flex justify-between py-3 border-b border-[#E6F1FB]">
-                  <span className="text-sm text-[#5F5E5A]">Specifications</span>
-                  <span className="text-sm font-medium text-[#042C53]">{product.specs}</span>
+                  <span className="text-sm text-[#5F5E5A]">{T.specifications}</span>
+                  <span className="text-sm font-medium text-[#042C53]">{rawProduct.specs}</span>
                 </div>
                 <div className="flex justify-between py-3">
-                  <span className="text-sm text-[#5F5E5A]">Storage</span>
-                  <span className="text-sm font-medium text-[#042C53]">{product.storage}</span>
+                  <span className="text-sm text-[#5F5E5A]">{T.storage}</span>
+                  <span className="text-sm font-medium text-[#042C53]">{rawProduct.storage}</span>
                 </div>
               </div>
             </div>
@@ -223,13 +232,9 @@ export default function ProductPage() {
             <div className="bg-[#042C53] p-6 text-white">
               <div className="flex items-center gap-3 mb-3">
                 <Shield className="w-5 h-5 text-[#378ADD]" />
-                <span className="font-semibold tracking-wide">Research Use Only</span>
+                <span className="font-semibold tracking-wide">{T.ruo}</span>
               </div>
-              <p className="text-white/60 text-sm leading-relaxed">
-                This product is sold strictly for laboratory research purposes only.
-                Not for human consumption, veterinary use, or any application outside
-                controlled research environments. Certificate of Analysis provided with every order.
-              </p>
+              <p className="text-white/60 text-sm leading-relaxed">{T.ruoText}</p>
             </div>
           </div>
         </div>
@@ -237,7 +242,7 @@ export default function ProductPage() {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-2xl font-bold text-[#042C53] mb-8">Related Products</h2>
+            <h2 className="text-2xl font-bold text-[#042C53] mb-8">{T.relatedProducts}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} compact />
