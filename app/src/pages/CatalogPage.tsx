@@ -68,10 +68,6 @@ export default function CatalogPage() {
 
     result = result.filter(p => p.price >= priceRange[0] && p.price <= priceRange[1]);
 
-    if (onlyAvailable) {
-      result = result.filter(p => p.inStock !== false);
-    }
-
     switch (sortBy) {
       case 'price-low':
         result = [...result].sort((a, b) => a.price - b.price);

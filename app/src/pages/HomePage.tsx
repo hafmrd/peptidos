@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import {
-  FlaskConical, Shield, TrendingUp, Microscope,
+  FlaskConical, Shield, Microscope,
   ChevronRight, Hexagon, Mail,
   Phone, MapPin, ArrowRight, X, CheckCircle2,
-  Package, Award, Clock, Snowflake, Truck, TestTube,
+  Award, Clock, Snowflake, Truck, TestTube,
   ShoppingBag, Star, Plus, Beaker
 } from 'lucide-react';
 import { getFeaturedProducts, getNewProducts, getSaleProducts } from '../data/products';
