@@ -2,10 +2,10 @@
 nixPkgs = ['nodejs_22', 'npm']
 
 [phases.install]
-cmds = ['cd app && npm install']
+cmds = ['npm --prefix app install']
 
 [phases.build]
-cmds = ['cd app && npm run build']
+cmds = ['npm --prefix app run build', 'cp -r app/dist ./dist']
 
 [start]
-cmd = 'npx serve -s app/dist -l 3000'
+cmd = 'npx serve -s dist -l 3000'
