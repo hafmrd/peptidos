@@ -12,7 +12,7 @@ import ProductCard from '../components/ProductCard';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../lib/translations';
 
-const APP_VERSION = '1.01';
+const APP_VERSION = '1.02';
 
 /* ─── HERO ─── */
 function Hero() {

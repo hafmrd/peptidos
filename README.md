@@ -36,6 +36,13 @@ nixpacks.toml is pre-configured
 
 ## Changelog
 
+### v1.02 — 2026-06-11
+
+**Product Vial Images**
+- Added 16 PNG vial images to `app/public/assets/catalog/` (served at `/assets/catalog/vial_<id>.png`)
+- Added `image` field to 15 products in `products.ts`; ProductCard displays image when available, falls back to Beaker icon
+- Version bumped to v1.02 on homepage
+
 ### v1.01 — 2026-06-11
 
 **Full Spanish (ES) Translation System**
