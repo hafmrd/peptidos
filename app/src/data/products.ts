@@ -47,6 +47,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_semaglutide-10mg.png',
     details: 'Semaglutide is a glucagon-like peptide-1 (GLP-1) receptor agonist. Mechanism: activates GLP-1 receptors to stimulate insulin secretion, suppress glucagon, delay gastric emptying, and reduce appetite via central pathways. Clinical trials (STEP program) show 15-20% body weight reduction at 68 weeks with 2.4mg dose.',
   },
   {
@@ -65,6 +66,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_tirzepatide-10mg.png',
     details: 'Tirzepatide is a novel dual glucose-dependent insulinotropic polypeptide (GIP) and glucagon-like peptide-1 (GLP-1) receptor agonist. SURPASS clinical program demonstrated superior HbA1c reduction vs. all comparators. SURMOUNT trials showed 15-22.5% weight loss depending on dose.',
   },
   {
@@ -83,6 +85,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'new',
+    image: '/assets/catalog/vial_retatrutide-10mg.png',
     details: 'Retatrutide (LY3437943) is a first-in-class triple hormone receptor agonist. Phase 2 trials demonstrated unprecedented 24.2% mean weight reduction at 48 weeks with 12mg dose (NEJM 2023). Triple agonism may increase energy expenditure beyond GLP-1/GIP dual agonists.',
   },
   {
@@ -161,6 +164,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_bpc157-10mg.png',
     details: 'BPC-157 (Body Protection Compound-157) is a synthetic pentadecapeptide consisting of 15 amino acids derived from a protective protein found in human gastric juice. Mechanisms include: angiogenesis stimulation via VEGF upregulation, NO pathway modulation, anti-inflammatory cytokine regulation, and extracellular matrix remodeling.',
   },
   {
@@ -195,6 +199,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_wolverine-blend-10mg.png',
     details: 'The Wolverine Blend combines BPC-157 and TB-500 in a single vial for synergistic regenerative research. Both peptides work through complementary mechanisms to support tissue repair, angiogenesis, and cellular migration.',
   },
   {
@@ -227,6 +232,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light',
     badge: 'new',
+    image: '/assets/catalog/vial_glow-blend-70mg.png',
     details: 'The GLOW Blend combines three powerful research peptides: BPC-157 for tissue repair, TB-500 for cell migration, and GHK-Cu for skin rejuvenation and collagen synthesis.',
   },
   {
@@ -242,6 +248,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light',
     badge: 'new',
+    image: '/assets/catalog/vial_klow-blend-80mg.png',
     details: 'The KLOW Blend is our most advanced regenerative blend, combining BPC-157, TB-500, KPV (anti-inflammatory tripeptide), and GHK-Cu for comprehensive tissue repair and anti-inflammatory research.',
   },
 
@@ -262,6 +269,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_semax-10mg.png',
     details: 'Semax is a synthetic heptapeptide (Met-Glu-His-Phe-Pro-Gly-Pro) derived from the adrenocorticotropic hormone (ACTH) fragment 4-10. Mechanisms: increases BDNF and NGF expression, modulates enkephalin degradation, enhances serotonin and dopamine metabolism.',
   },
   {
@@ -312,6 +320,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_cjc1295-5mg.png',
     details: 'CJC-1295 without DAC (also known as Mod GRF 1-29) is a 29-amino acid analogue of growth hormone-releasing hormone. Unlike CJC-1295 with DAC, it provides discrete pulses mimicking endogenous physiology. Best used in combination with a GHRP like Ipamorelin.',
   },
   {
@@ -330,6 +339,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_ipamorelin-10mg.png',
     details: 'Ipamorelin is a pentapeptide growth hormone secretagogue that selectively stimulates the pituitary gland to release growth hormone. Unlike other GHRPs, it does not significantly increase cortisol, prolactin, or aldosterone — making it the "cleanest" GHRP for research.',
   },
   {
@@ -348,6 +358,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '2-8°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_hgh-10iu.png',
     details: 'Human Growth Hormone (Somatropin) is a 191-amino acid polypeptide produced by the anterior pituitary gland. Recombinant HGH is identical to natural pituitary GH. Research areas: GH deficiency, body composition, recovery enhancement, and metabolic optimization.',
   },
   {
@@ -553,6 +564,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder (blue coloration)',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light',
     badge: 'popular',
+    image: '/assets/catalog/vial_ghk-cu-50mg.png',
     details: 'GHK-Cu is a tripeptide (glycyl-L-histidyl-L-lysine) complexed with copper(II). Functions: upregulates ~4000 human genes involved in regenerative processes, stimulates collagen and elastin synthesis, promotes wound healing, and exhibits potent antioxidant activity.',
   },
   {
@@ -601,6 +613,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/catalog/vial_epithalon-10mg.png',
     details: 'Epithalon (Epithalone, Ala-Glu-Asp-Gly) is a tetrapeptide with potent telomerase-activating properties. Mechanism: activates telomerase enzyme, which elongates telomeres. 20+ years of clinical research in Russia.',
   },
   {
@@ -619,6 +632,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light and moisture',
     badge: 'popular',
+    image: '/assets/catalog/vial_nad-plus-500mg.png',
     details: 'NAD+ (Nicotinamide Adenine Dinucleotide) is an essential coenzyme found in all living cells. Critical for energy metabolism (ATP production), DNA repair (PARP enzymes), and sirtuin activation (SIRT1-SIRT7). NAD+ levels decline by approximately 50% between age 20 and 50.',
   },
   {
@@ -847,6 +861,7 @@ export const products: Product[] = [
     description: 'Sterile Reconstitution Solution',
     shortDesc: '30mL sterile water with 0.9% benzyl alcohol for peptide reconstitution.',
     price: 25,
+    image: '/assets/catalog/vial_bacteriostatic-water.png',
     specs: '30mL vial',
     purity: 'USP Grade',
     form: 'Liquid',
