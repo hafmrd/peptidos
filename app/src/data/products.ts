@@ -232,7 +232,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light',
     badge: 'new',
-    image: '/assets/catalog/vial_glow-blend-70mg.png',
+    image: '/assets/Catalogo/glow-blend-70mg.png',
     details: 'The GLOW Blend combines three powerful research peptides: BPC-157 for tissue repair, TB-500 for cell migration, and GHK-Cu for skin rejuvenation and collagen synthesis.',
   },
   {
@@ -248,7 +248,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light',
     badge: 'new',
-    image: '/assets/catalog/vial_klow-blend-80mg.png',
+    image: '/assets/Catalogo/klow-blend-80mg.jpg',
     details: 'The KLOW Blend is our most advanced regenerative blend, combining BPC-157, TB-500, KPV (anti-inflammatory tripeptide), and GHK-Cu for comprehensive tissue repair and anti-inflammatory research.',
   },
 
@@ -284,6 +284,7 @@ export const products: Product[] = [
     purity: '>99% (HPLC)',
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
+    image: '/assets/Catalogo/selank-10mg.png',
     details: 'Selank is a synthetic heptapeptide developed in Russia. Research shows anxiolytic effects without sedation, cognitive enhancement, and modulation of interleukin-6 expression.',
   },
   {
@@ -566,7 +567,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder (blue coloration)',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light',
     badge: 'popular',
-    image: '/assets/catalog/vial_ghk-cu-50mg.png',
+    image: '/assets/Catalogo/ghk-cu-50mg.jpg',
     details: 'GHK-Cu is a tripeptide (glycyl-L-histidyl-L-lysine) complexed with copper(II). Functions: upregulates ~4000 human genes involved in regenerative processes, stimulates collagen and elastin synthesis, promotes wound healing, and exhibits potent antioxidant activity.',
   },
   {
