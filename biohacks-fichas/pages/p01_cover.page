@@ -1,0 +1,138 @@
+pageType: cover
+background:
+  type: solid
+  color: "$primary"
+elements:
+  - elementId: deco-hex-1
+    elementType: shape
+    shapeName: hexagon
+    bounds: [900, 50, 300, 300]
+    opacity: 0.05
+    fill:
+      type: solid
+      color: "$accent"
+  - elementId: deco-hex-2
+    elementType: shape
+    shapeName: hexagon
+    bounds: [1050, 350, 200, 200]
+    opacity: 0.05
+    fill:
+      type: solid
+      color: "$tint"
+  - elementId: top-bar
+    elementType: shape
+    shapeName: rect
+    bounds: [0, 0, 1280, 5]
+    fill:
+      type: solid
+      color: "$accent"
+  - elementId: logo-hex
+    elementType: shape
+    shapeName: hexagon
+    bounds: [80, 60, 44, 44]
+    fill:
+      type: solid
+      color: "$accent"
+  - elementId: logo-B
+    elementType: text
+    bounds: [80, 60, 44, 44]
+    content:
+      text: "B"
+      fontSize: 24
+      fontFamily: "Liter"
+      color: "$light"
+      align: [center, middle]
+      wrap: false
+  - elementId: brand-name
+    elementType: text
+    bounds: [140, 55, 400, 30]
+    content:
+      text: "BIOHACKS"
+      fontSize: 22
+      fontFamily: "Liter"
+      color: "$light"
+      letterSpacing: 4
+      align: [left, middle]
+      wrap: false
+  - elementId: brand-sub
+    elementType: text
+    bounds: [140, 85, 400, 20]
+    content:
+      style: "$caption"
+      text: "PHARMACEUTICAL"
+      color: "$tint"
+      letterSpacing: 6
+      align: [left, middle]
+      wrap: false
+  - elementId: divider-top
+    elementType: shape
+    shapeName: straightConnector1
+    bounds: [80, 120, 300, 0]
+    border:
+      style: solid
+      width: 1
+      color: "#FFFFFF30"
+  - elementId: main-title
+    elementType: text
+    bounds: [80, 200, 800, 70]
+    content:
+      style: "$title"
+      text: "TECHNICAL DATA SHEETS"
+      fontSize: 52
+      letterSpacing: 6
+      align: [left, middle]
+      wrap: false
+  - elementId: sub-title
+    elementType: text
+    bounds: [80, 285, 600, 35]
+    content:
+      style: "$subtitle"
+      text: "Peptide Science Division"
+      fontSize: 24
+      color: "$tint"
+      align: [left, middle]
+      wrap: false
+  - elementId: divider-mid
+    elementType: shape
+    shapeName: straightConnector1
+    bounds: [80, 340, 200, 0]
+    border:
+      style: solid
+      width: 2
+      color: "$accent"
+  - elementId: description
+    elementType: text
+    bounds: [80, 370, 700, 110]
+    content:
+      style: "$body"
+      text: "Comprehensive product documentation for BIOHACKS PHARMACEUTICAL research peptide portfolio. Specifications, mechanisms, and technical data for 12 flagship compounds."
+      color: "#FFFFFFB0"
+      align: [left, top]
+  - elementId: year-badge
+    elementType: shape
+    shapeName: rect
+    bounds: [80, 480, 120, 35]
+    fill:
+      type: solid
+      color: "$accent"
+  - elementId: year-text
+    elementType: text
+    bounds: [80, 480, 120, 35]
+    content:
+      text: "2025 EDITION"
+      fontSize: 12
+      fontFamily: "Liter"
+      color: "$light"
+      letterSpacing: 2
+      align: [center, middle]
+      wrap: false
+  - elementId: ruo-notice
+    elementType: text
+    bounds: [80, 650, 600, 20]
+    content:
+      style: "$caption"
+      text: "FOR RESEARCH USE ONLY  —  NOT FOR HUMAN CONSUMPTION"
+      color: "#FFFFFF50"
+      letterSpacing: 2
+      align: [left, middle]
+      wrap: false

@@ -1,0 +1,130 @@
+pageType: content
+background:
+  type: solid
+  color: "$background"
+elements:
+  - elementId: left-accent
+    elementType: shape
+    shapeName: rect
+    bounds: [0, 0, 8, 720]
+    fill:
+      type: solid
+      color: "$secondary"
+  - elementId: product-badge
+    elementType: shape
+    shapeName: rect
+    bounds: [60, 35, 140, 28]
+    fill:
+      type: solid
+      color: "$secondary"
+  - elementId: badge-text
+    elementType: text
+    bounds: [60, 35, 140, 28]
+    content:
+      text: "SPECIFICATIONS"
+      fontSize: 11
+      fontFamily: "Liter"
+      color: "$light"
+      letterSpacing: 1
+      align: [center, middle]
+      wrap: false
+  - elementId: page-title
+    elementType: text
+    bounds: [60, 75, 600, 40]
+    content:
+      style: "$pageTitle"
+      text: "HGH  —  Technical Data"
+      align: [left, middle]
+      wrap: false
+  - elementId: divider
+    elementType: shape
+    shapeName: straightConnector1
+    bounds: [60, 120, 1160, 0]
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: spec-table
+    elementType: table
+    bounds: [60, 140, 1160, 470]
+    columnWidths: [0.28, 0.72]
+    rowHeights: [0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.04]
+    style: "$default"
+    rows:
+      - - content:
+            text: "PROPERTY"
+        - content:
+            text: "VALUE"
+      - - content:
+            text: "CAS Number"
+        - content:
+            text: "12629-01-5"
+      - - content:
+            text: "Molecular Formula"
+        - content:
+            text: "C990H1529N263O299S7"
+      - - content:
+            text: "Molecular Weight"
+        - content:
+            text: "22,124.12 g/mol"
+      - - content:
+            text: "Purity"
+        - content:
+            text: ">99.0% (SDS-PAGE / HPLC)"
+      - - content:
+            text: "Structure"
+        - content:
+            text: "191 amino acids, 2 disulfide bridges"
+      - - content:
+            text: "Physical State"
+        - content:
+            text: "Lyophilized powder"
+      - - content:
+            text: "Storage (Lyophilized)"
+        - content:
+            text: "2-8°C (refrigerated, do not freeze)"
+      - - content:
+            text: "Storage (Reconstituted)"
+        - content:
+            text: "2-8°C, use within 14-28 days"
+      - - content:
+            text: "Reconstitution"
+        - content:
+            text: "1 mL bacteriostatic water per vial"
+      - - content:
+            text: "Research Dosage"
+        - content:
+            text: "1 - 4 IU daily"
+      - - content:
+            text: "Administration"
+        - content:
+            text: "Subcutaneous injection"
+      - - content:
+            text: "Shelf Life"
+        - content:
+            text: "24 months from date of manufacture (refrigerated)"
+  - elementId: footer-line
+    elementType: shape
+    shapeName: straightConnector1
+    bounds: [60, 660, 1160, 0]
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: footer-ruo
+    elementType: text
+    bounds: [60, 670, 500, 18]
+    content:
+      style: "$caption"
+      text: "FOR RESEARCH USE ONLY  —  NOT FOR HUMAN CONSUMPTION"
+      letterSpacing: 1
+      align: [left, middle]
+      wrap: false
+  - elementId: footer-brand
+    elementType: text
+    bounds: [900, 670, 320, 18]
+    content:
+      style: "$caption"
+      text: "BIOHACKS PHARMACEUTICAL  |  Peptide Science Division"
+      align: [right, middle]
+      wrap: false

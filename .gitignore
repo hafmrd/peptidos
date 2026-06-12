@@ -1,0 +1,9 @@
+node_modules/
+app/node_modules/
+app/dist/
+app/dist-ssr/
+*.local
+.DS_Store
+*.log
+package-lock.json
+app/package-lock.json

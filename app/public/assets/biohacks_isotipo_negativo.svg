@@ -1,0 +1,9 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Biohacks isotipo negativo">
+  <rect width="120" height="120" rx="16" fill="#042C53"/>
+  <polygon points="60,20 99,42.5 99,80.5 60,103 21,80.5 21,42.5" fill="none" stroke="#85B7EB" stroke-width="4" stroke-linejoin="round"/>
+  <polygon points="60,36 84,50 84,73 60,87 36,73 36,50" fill="#0C447C"/>
+  <text x="60" y="80" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="48" font-weight="600" fill="#FFFFFF">B</text>
+  <circle cx="60" cy="20" r="5.2" fill="#85B7EB"/>
+  <circle cx="99" cy="42.5" r="5.2" fill="#85B7EB"/>
+  <circle cx="21" cy="80.5" r="5.2" fill="#85B7EB"/>
+</svg>

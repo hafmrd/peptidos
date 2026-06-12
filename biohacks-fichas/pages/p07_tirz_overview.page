@@ -1,0 +1,240 @@
+pageType: content
+background:
+  type: solid
+  color: "$background"
+elements:
+  - elementId: left-accent
+    elementType: shape
+    shapeName: rect
+    bounds: [0, 0, 8, 720]
+    fill:
+      type: solid
+      color: "$secondary"
+  - elementId: product-badge
+    elementType: shape
+    shapeName: rect
+    bounds: [60, 35, 110, 28]
+    fill:
+      type: solid
+      color: "$accent"
+  - elementId: badge-text
+    elementType: text
+    bounds: [60, 35, 110, 28]
+    content:
+      text: "GLP-1 CLASS"
+      fontSize: 11
+      fontFamily: "Liter"
+      color: "$light"
+      letterSpacing: 1
+      align: [center, middle]
+      wrap: false
+  - elementId: page-title
+    elementType: text
+    bounds: [60, 75, 600, 40]
+    content:
+      style: "$pageTitle"
+      text: "TIRZEPATIDE  —  Overview"
+      align: [left, middle]
+      wrap: false
+  - elementId: divider
+    elementType: shape
+    shapeName: straightConnector1
+    bounds: [60, 120, 1160, 0]
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: col1-title
+    elementType: text
+    bounds: [60, 140, 300, 25]
+    content:
+      text: "DESCRIPTION"
+      fontSize: 14
+      fontFamily: "Liter"
+      color: "$secondary"
+      letterSpacing: 2
+      align: [left, middle]
+      wrap: false
+  - elementId: col1-body
+    elementType: text
+    bounds: [60, 175, 550, 195]
+    content:
+      style: "$body"
+      fontSize: 15
+      lineHeight: 1.6
+      text: |
+        <p>Tirzepatide is a dual GIP and GLP-1 receptor agonist, the first-in-class "twincretin." A 39-amino acid peptide with C20 fatty diacid for albumin binding and extended half-life.</p>
+        <p style="margin-top:10px">Marketed by Eli Lilly as <strong>Mounjaro</strong> (diabetes) and <strong>Zepbound</strong> (obesity). Demonstrated superior efficacy to Semaglutide in head-to-head trials.</p>
+      align: [left, top]
+  - elementId: col2-title
+    elementType: text
+    bounds: [660, 140, 300, 25]
+    content:
+      text: "MECHANISM OF ACTION"
+      fontSize: 14
+      fontFamily: "Liter"
+      color: "$secondary"
+      letterSpacing: 2
+      align: [left, middle]
+      wrap: false
+  - elementId: mech-body
+    elementType: text
+    bounds: [660, 175, 560, 195]
+    content:
+      style: "$body"
+      fontSize: 15
+      lineHeight: 1.6
+      text: |
+        <p>Dual receptor activation provides:</p>
+        <ul>
+        <li>Enhanced insulin secretion (GIP + GLP-1 synergy)</li>
+        <li>Superior glucagon suppression vs. GLP-1 alone</li>
+        <li>Greater weight reduction via dual pathway</li>
+        <li>Improved lipid metabolism</li>
+        <li>Prolonged half-life via albumin binding</li>
+        </ul>
+      align: [left, top]
+  - elementId: clinical-title
+    elementType: text
+    bounds: [60, 395, 300, 25]
+    content:
+      text: "CLINICAL DATA"
+      fontSize: 14
+      fontFamily: "Liter"
+      color: "$secondary"
+      letterSpacing: 2
+      align: [left, middle]
+      wrap: false
+  - elementId: data-card-1-bg
+    elementType: shape
+    shapeName: rect
+    bounds: [60, 430, 250, 100]
+    fill:
+      type: solid
+      color: "$light"
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: data-1-num
+    elementType: text
+    bounds: [75, 440, 220, 45]
+    content:
+      style: "$dataHighlight"
+      text: "22.5%"
+      align: [left, middle]
+      wrap: false
+  - elementId: data-1-label
+    elementType: text
+    bounds: [75, 490, 220, 30]
+    content:
+      style: "$label"
+      text: "Max weight loss at 72 weeks (SURMOUNT-1)"
+      lineHeight: 1.3
+      align: [left, top]
+  - elementId: data-card-2-bg
+    elementType: shape
+    shapeName: rect
+    bounds: [330, 430, 250, 100]
+    fill:
+      type: solid
+      color: "$light"
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: data-2-num
+    elementType: text
+    bounds: [345, 440, 220, 45]
+    content:
+      style: "$dataHighlight"
+      text: "2.58%"
+      align: [left, middle]
+      wrap: false
+  - elementId: data-2-label
+    elementType: text
+    bounds: [345, 490, 220, 30]
+    content:
+      style: "$label"
+      text: "HbA1c reduction at 15mg (SURPASS-4)"
+      lineHeight: 1.3
+      align: [left, top]
+  - elementId: data-card-3-bg
+    elementType: shape
+    shapeName: rect
+    bounds: [600, 430, 250, 100]
+    fill:
+      type: solid
+      color: "$light"
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: data-3-num
+    elementType: text
+    bounds: [615, 440, 220, 45]
+    content:
+      style: "$dataHighlight"
+      text: "15mg"
+      align: [left, middle]
+      wrap: false
+  - elementId: data-3-label
+    elementType: text
+    bounds: [615, 490, 220, 30]
+    content:
+      style: "$label"
+      text: "Maximum approved dose"
+      lineHeight: 1.3
+      align: [left, top]
+  - elementId: data-card-4-bg
+    elementType: shape
+    shapeName: rect
+    bounds: [870, 430, 350, 100]
+    fill:
+      type: solid
+      color: "$light"
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: data-4-num
+    elementType: text
+    bounds: [885, 440, 320, 45]
+    content:
+      style: "$dataHighlight"
+      text: "5-dose"
+      align: [left, middle]
+      wrap: false
+  - elementId: data-4-label
+    elementType: text
+    bounds: [885, 490, 320, 30]
+    content:
+      style: "$label"
+      text: "Escalation protocol (2.5 to 15mg)"
+      lineHeight: 1.3
+      align: [left, top]
+  - elementId: footer-line
+    elementType: shape
+    shapeName: straightConnector1
+    bounds: [60, 660, 1160, 0]
+    border:
+      style: solid
+      width: 1
+      color: "#E6F1FB"
+  - elementId: footer-ruo
+    elementType: text
+    bounds: [60, 670, 500, 18]
+    content:
+      style: "$caption"
+      text: "FOR RESEARCH USE ONLY  —  NOT FOR HUMAN CONSUMPTION"
+      letterSpacing: 1
+      align: [left, middle]
+      wrap: false
+  - elementId: footer-brand
+    elementType: text
+    bounds: [900, 670, 320, 18]
+    content:
+      style: "$caption"
+      text: "BIOHACKS PHARMACEUTICAL  |  Peptide Science Division"
+      align: [right, middle]
+      wrap: false

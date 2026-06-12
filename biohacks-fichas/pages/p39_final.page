@@ -1,0 +1,110 @@
+pageType: final
+background:
+  type: solid
+  color: "$primary"
+elements:
+  - elementId: deco-hex-1
+    elementType: shape
+    shapeName: hexagon
+    bounds: [200, 100, 150, 150]
+    fill:
+      type: solid
+      color: "#FFFFFF05"
+  - elementId: deco-hex-2
+    elementType: shape
+    shapeName: hexagon
+    bounds: [1000, 450, 180, 180]
+    fill:
+      type: solid
+      color: "#FFFFFF05"
+  - elementId: top-bar
+    elementType: shape
+    shapeName: rect
+    bounds: [0, 0, 1280, 5]
+    fill:
+      type: solid
+      color: "$accent"
+  - elementId: logo-hex
+    elementType: shape
+    shapeName: hexagon
+    bounds: [590, 150, 100, 100]
+    fill:
+      type: solid
+      color: "$accent"
+  - elementId: logo-B
+    elementType: text
+    bounds: [590, 150, 100, 100]
+    content:
+      text: "B"
+      fontSize: 56
+      fontFamily: "Liter"
+      color: "$light"
+      align: [center, middle]
+      wrap: false
+  - elementId: brand-name
+    elementType: text
+    bounds: [200, 280, 880, 50]
+    content:
+      style: "$title"
+      text: "BIOHACKS PHARMACEUTICAL"
+      fontSize: 42
+      letterSpacing: 6
+      align: [center, middle]
+      wrap: false
+  - elementId: brand-sub
+    elementType: text
+    bounds: [200, 340, 880, 30]
+    content:
+      style: "$subtitle"
+      text: "Precision Bioactive Compounds"
+      color: "$tint"
+      letterSpacing: 4
+      align: [center, middle]
+      wrap: false
+  - elementId: divider-center
+    elementType: shape
+    shapeName: straightConnector1
+    bounds: [540, 395, 200, 0]
+    border:
+      style: solid
+      width: 2
+      color: "$accent"
+  - elementId: ruo-main
+    elementType: text
+    bounds: [200, 430, 880, 40]
+    content:
+      text: "FOR RESEARCH USE ONLY"
+      fontSize: 28
+      fontFamily: "Liter"
+      color: "#FF6B6B"
+      letterSpacing: 4
+      align: [center, middle]
+      wrap: false
+  - elementId: ruo-sub
+    elementType: text
+    bounds: [200, 480, 880, 25]
+    content:
+      text: "NOT FOR HUMAN CONSUMPTION"
+      fontSize: 16
+      fontFamily: "Liter"
+      color: "#FF6B6B90"
+      letterSpacing: 3
+      align: [center, middle]
+      wrap: false
+  - elementId: contact-info
+    elementType: text
+    bounds: [300, 540, 680, 60]
+    content:
+      style: "$body"
+      text: |
+        <p style="text-align:center">Peptide Science Division</p>
+        <p style="text-align:center"><span style="color:#85B7EB;">www.biohackspharma.com</span>  |  <span style="color:#85B7EB;">research@biohackspharma.com</span></p>
+      fontSize: 14
+      lineHeight: 1.6
+  - elementId: bottom-bar
+    elementType: shape
+    shapeName: rect
+    bounds: [0, 715, 1280, 5]
+    fill:
+      type: solid
+      color: "$accent"

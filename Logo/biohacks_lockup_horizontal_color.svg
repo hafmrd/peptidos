@@ -1,0 +1,12 @@
+<svg width="420" height="96" viewBox="0 0 420 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Biohacks Pharmaceutical">
+  <g>
+    <polygon points="48,14 80,32.5 80,69.5 48,88 16,69.5 16,32.5" fill="none" stroke="#185FA5" stroke-width="3.2" stroke-linejoin="round"/>
+    <polygon points="48,27.5 68,39.2 68,62.8 48,74.5 28,62.8 28,39.2" fill="#E6F1FB"/>
+    <text x="48" y="62" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#042C53">B</text>
+    <circle cx="48" cy="14" r="4.2" fill="#378ADD"/>
+    <circle cx="80" cy="32.5" r="4.2" fill="#378ADD"/>
+    <circle cx="16" cy="69.5" r="4.2" fill="#378ADD"/>
+  </g>
+  <text x="104" y="52" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="600" letter-spacing="-0.5" fill="#042C53">Biohacks</text>
+  <text x="106" y="72" font-family="Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" letter-spacing="4.5" fill="#5F5E5A">PHARMACEUTICAL</text>
+</svg>
