@@ -321,7 +321,6 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_cjc1295-5mg.png',
     details: 'CJC-1295 without DAC (also known as Mod GRF 1-29) is a 29-amino acid analogue of growth hormone-releasing hormone. Unlike CJC-1295 with DAC, it provides discrete pulses mimicking endogenous physiology. Best used in combination with a GHRP like Ipamorelin.',
   },
   {
@@ -340,7 +339,6 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_ipamorelin-10mg.png',
     details: 'Ipamorelin is a pentapeptide growth hormone secretagogue that selectively stimulates the pituitary gland to release growth hormone. Unlike other GHRPs, it does not significantly increase cortisol, prolactin, or aldosterone — making it the "cleanest" GHRP for research.',
   },
   {
@@ -616,7 +614,6 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_epithalon-10mg.png',
     details: 'Epithalon (Epithalone, Ala-Glu-Asp-Gly) is a tetrapeptide with potent telomerase-activating properties. Mechanism: activates telomerase enzyme, which elongates telomeres. 20+ years of clinical research in Russia.',
   },
   {
