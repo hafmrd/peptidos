@@ -99,10 +99,16 @@ export default function CatalogPage() {
   return (
     <div className="min-h-screen bg-[#F1EFE8] pt-20">
       {/* Header */}
-      <div className="bg-[#042C53] py-16">
-        <div className="max-w-7xl mx-auto section-padding">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{T.title}</h1>
-          <p className="text-[#85B7EB]/80 max-w-2xl">{T.desc}</p>
+      <div className="relative bg-[#042C53] py-20 overflow-hidden">
+        <div className="absolute inset-0 hex-pattern opacity-40" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#378ADD]/10 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#185FA5]/15 rounded-full blur-3xl" />
+        <div className="max-w-7xl mx-auto section-padding relative">
+          <span className="inline-block text-[#85B7EB] text-xs tracking-[0.3em] uppercase font-semibold mb-3">
+            BIOHACKS PHARMACEUTICAL
+          </span>
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">{T.title}</h1>
+          <p className="text-[#85B7EB]/80 max-w-2xl text-lg">{T.desc}</p>
         </div>
       </div>
 

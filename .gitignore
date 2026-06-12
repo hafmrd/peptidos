@@ -8,5 +8,5 @@ app/dist-ssr/
 package-lock.json
 app/package-lock.json
 
-# Vial images — kept local only, not tracked in git
-app/public/assets/
+# Vial renders — kept local only, not tracked in git
+app/public/assets/catalog/

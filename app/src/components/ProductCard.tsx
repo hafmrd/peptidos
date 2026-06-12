@@ -21,35 +21,44 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
     return (
       <Link
         to={`/product/${p.id}`}
-        className="group bg-white border border-[#E6F1FB] hover:border-[#378ADD]/40 hover:shadow-lg transition-all duration-300 p-5"
+        className="group bg-white border border-[#E6F1FB] hover:border-[#378ADD]/50 hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
       >
-        <div className="flex items-start justify-between mb-3">
+        {/* Image panel */}
+        <div className="relative bg-[#F8FAFD] border-b border-[#E6F1FB] flex items-center justify-center h-44 overflow-hidden">
           {p.image ? (
-            <img src={p.image} alt={p.name} className="w-16 h-20 object-contain" />
+            <img
+              src={p.image}
+              alt={p.name}
+              className="h-36 w-auto max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+            />
           ) : (
-            <div className="p-2.5 bg-[#E6F1FB] group-hover:bg-[#378ADD]/10 transition-colors">
-              <Beaker className="w-4 h-4 text-[#378ADD]" />
+            <div className="flex flex-col items-center gap-2">
+              <Beaker className="w-10 h-10 text-[#D4E5F5]" />
             </div>
           )}
           {p.badge && (
-            <span className={`${badgeConfig[p.badge].bg} text-white text-[10px] font-bold tracking-wider px-2 py-1 flex items-center gap-1`}>
+            <span className={`absolute top-3 right-3 ${badgeConfig[p.badge].bg} text-white text-[10px] font-bold tracking-wider px-2 py-1 flex items-center gap-1 shadow-lg`}>
               {badgeConfig[p.badge].icon}
               {badgeLabelMap[p.badge as keyof typeof badgeLabelMap] ?? badgeConfig[p.badge].label}
             </span>
           )}
         </div>
-        <h3 className="text-base font-bold text-[#042C53] mb-1 group-hover:text-[#185FA5] transition-colors">
-          {p.name}
-        </h3>
-        <p className="text-xs text-[#042C53]/60 mb-3 line-clamp-2">{p.shortDesc}</p>
-        <div className="flex items-center justify-between">
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-bold text-[#042C53]">${p.price}</span>
-            {p.originalPrice && (
-              <span className="text-sm text-[#5F5E5A] line-through">${p.originalPrice}</span>
-            )}
+
+        {/* Info */}
+        <div className="p-4 flex flex-col flex-1">
+          <h3 className="text-base font-bold text-[#042C53] mb-1 group-hover:text-[#185FA5] transition-colors">
+            {p.name}
+          </h3>
+          <p className="text-xs text-[#5F5E5A] mb-3 line-clamp-2 leading-relaxed flex-1">{p.shortDesc}</p>
+          <div className="flex items-center justify-between pt-3 border-t border-[#E6F1FB]">
+            <div className="flex items-baseline gap-2">
+              <span className="text-lg font-bold text-[#042C53]">${p.price}</span>
+              {p.originalPrice && (
+                <span className="text-xs text-[#5F5E5A] line-through">${p.originalPrice}</span>
+              )}
+            </div>
+            <ArrowRight className="w-4 h-4 text-[#9BB9D4] group-hover:text-[#378ADD] group-hover:translate-x-0.5 transition-all" />
           </div>
-          <ArrowRight className="w-4 h-4 text-[#9BB9D4] group-hover:text-[#378ADD] transition-colors" />
         </div>
       </Link>
     );
@@ -58,34 +67,40 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
   return (
     <Link
       to={`/product/${p.id}`}
-      className="group bg-white border border-[#E6F1FB] hover:border-[#378ADD]/40 hover:shadow-xl transition-all duration-300 overflow-hidden"
+      className="group bg-white border border-[#E6F1FB] hover:border-[#378ADD]/50 hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
     >
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-4">
-          {p.image ? (
-            <img src={p.image} alt={p.name} className="w-20 h-24 object-contain" />
-          ) : (
-            <div className="p-3 bg-[#E6F1FB] group-hover:bg-[#378ADD]/10 transition-colors">
-              <Beaker className="w-5 h-5 text-[#378ADD]" />
-            </div>
-          )}
-          <div className="flex flex-col items-end gap-1">
-            {p.badge && (
-              <span className={`${badgeConfig[p.badge].bg} text-white text-[10px] font-bold tracking-wider px-2 py-1 flex items-center gap-1`}>
-                {badgeConfig[p.badge].icon}
-                {badgeLabelMap[p.badge as keyof typeof badgeLabelMap] ?? badgeConfig[p.badge].label}
-              </span>
-            )}
-            <span className="text-[10px] text-[#042C53] tracking-wider uppercase bg-[#E6F1FB] px-2 py-0.5">
-              {p.categoryLabel}
-            </span>
+      {/* Image panel */}
+      <div className="relative bg-[#F8FAFD] border-b border-[#E6F1FB] flex items-center justify-center h-52 overflow-hidden">
+        {p.image ? (
+          <img
+            src={p.image}
+            alt={p.name}
+            className="h-40 w-auto max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="flex flex-col items-center gap-2">
+            <Beaker className="w-12 h-12 text-[#D4E5F5]" />
           </div>
+        )}
+        <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
+          {p.badge && (
+            <span className={`${badgeConfig[p.badge].bg} text-white text-[10px] font-bold tracking-wider px-2 py-1 flex items-center gap-1 shadow-lg`}>
+              {badgeConfig[p.badge].icon}
+              {badgeLabelMap[p.badge as keyof typeof badgeLabelMap] ?? badgeConfig[p.badge].label}
+            </span>
+          )}
+          <span className="text-[10px] text-[#5F5E5A] tracking-wider uppercase bg-white border border-[#E6F1FB] px-2 py-0.5">
+            {p.categoryLabel}
+          </span>
         </div>
+      </div>
 
+      {/* Info */}
+      <div className="p-5 flex flex-col flex-1">
         <h3 className="text-lg font-bold text-[#042C53] mb-1 group-hover:text-[#185FA5] transition-colors">
           {p.name}
         </h3>
-        <p className="text-sm text-[#042C53]/60 mb-3 leading-relaxed line-clamp-2">
+        <p className="text-sm text-[#5F5E5A] mb-3 leading-relaxed line-clamp-2 flex-1">
           {p.shortDesc}
         </p>
 
@@ -101,7 +116,7 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
               <span className="text-sm text-[#5F5E5A] line-through">${p.originalPrice}</span>
             )}
           </div>
-          <span className="text-xs text-[#378ADD] font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+          <span className="text-xs text-[#378ADD] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
             {T.viewDetails} <ArrowRight className="w-4 h-4" />
           </span>
         </div>

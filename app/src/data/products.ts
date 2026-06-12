@@ -47,7 +47,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_semaglutide-10mg.png',
+    image: '/assets/Catalogo/semaglutide-10mg.jpg',
     details: 'Semaglutide is a glucagon-like peptide-1 (GLP-1) receptor agonist. Mechanism: activates GLP-1 receptors to stimulate insulin secretion, suppress glucagon, delay gastric emptying, and reduce appetite via central pathways. Clinical trials (STEP program) show 15-20% body weight reduction at 68 weeks with 2.4mg dose.',
   },
   {
@@ -66,7 +66,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_tirzepatide-10mg.png',
+    image: '/assets/Catalogo/tirzepatide-10mg.jpg',
     details: 'Tirzepatide is a novel dual glucose-dependent insulinotropic polypeptide (GIP) and glucagon-like peptide-1 (GLP-1) receptor agonist. SURPASS clinical program demonstrated superior HbA1c reduction vs. all comparators. SURMOUNT trials showed 15-22.5% weight loss depending on dose.',
   },
   {
@@ -85,7 +85,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'new',
-    image: '/assets/catalog/vial_retatrutide-10mg.png',
+    image: '/assets/Catalogo/retatrutide-10mg.jpg',
     details: 'Retatrutide (LY3437943) is a first-in-class triple hormone receptor agonist. Phase 2 trials demonstrated unprecedented 24.2% mean weight reduction at 48 weeks with 12mg dose (NEJM 2023). Triple agonism may increase energy expenditure beyond GLP-1/GIP dual agonists.',
   },
   {
@@ -164,7 +164,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_bpc157-10mg.png',
+    image: '/assets/Catalogo/bpc-157-10mg.png',
     details: 'BPC-157 (Body Protection Compound-157) is a synthetic pentadecapeptide consisting of 15 amino acids derived from a protective protein found in human gastric juice. Mechanisms include: angiogenesis stimulation via VEGF upregulation, NO pathway modulation, anti-inflammatory cytokine regulation, and extracellular matrix remodeling.',
   },
   {
@@ -199,7 +199,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_wolverine-blend-10mg.png',
+    image: '/assets/Catalogo/wolverine-blend-10mg.jpg',
     details: 'The Wolverine Blend combines BPC-157 and TB-500 in a single vial for synergistic regenerative research. Both peptides work through complementary mechanisms to support tissue repair, angiogenesis, and cellular migration.',
   },
   {
@@ -269,7 +269,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_semax-10mg.png',
+    image: '/assets/Catalogo/semax-10mg.jpg',
     details: 'Semax is a synthetic heptapeptide (Met-Glu-His-Phe-Pro-Gly-Pro) derived from the adrenocorticotropic hormone (ACTH) fragment 4-10. Mechanisms: increases BDNF and NGF expression, modulates enkephalin degradation, enhances serotonin and dopamine metabolism.',
   },
   {
@@ -358,7 +358,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '2-8°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
-    image: '/assets/catalog/vial_hgh-10iu.png',
+    image: '/assets/Catalogo/hgh-somatropin-10iu.jpg',
     details: 'Human Growth Hormone (Somatropin) is a 191-amino acid polypeptide produced by the anterior pituitary gland. Recombinant HGH is identical to natural pituitary GH. Research areas: GH deficiency, body composition, recovery enhancement, and metabolic optimization.',
   },
   {
@@ -373,6 +373,7 @@ export const products: Product[] = [
     purity: '>99% (HPLC)',
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
+    image: '/assets/Catalogo/tesamorelin-10mg.jpg',
     details: 'Tesamorelin is a synthetic analogue of growth hormone-releasing hormone (GHRH) with enhanced stability. FDA-approved for HIV-associated lipodystrophy. Research focuses on visceral adipose tissue reduction and IGF-1 elevation.',
   },
   {
@@ -403,6 +404,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted)',
     badge: 'popular',
+    image: '/assets/Catalogo/cjc-1295-ipamorelin-10mg.jpg',
     details: 'The CJC-1295 / Ipamorelin Blend combines a GHRH analogue with a selective GH secretagogue. CJC-1295 provides the signal for GH release, while Ipamorelin amplifies the response. Synergistic effect greater than either peptide alone.',
   },
   {
@@ -632,7 +634,7 @@ export const products: Product[] = [
     form: 'Lyophilized powder',
     storage: '-20°C (lyophilized), 2-8°C (reconstituted), protect from light and moisture',
     badge: 'popular',
-    image: '/assets/catalog/vial_nad-plus-500mg.png',
+    image: '/assets/Catalogo/nad-plus-500mg.jpg',
     details: 'NAD+ (Nicotinamide Adenine Dinucleotide) is an essential coenzyme found in all living cells. Critical for energy metabolism (ATP production), DNA repair (PARP enzymes), and sirtuin activation (SIRT1-SIRT7). NAD+ levels decline by approximately 50% between age 20 and 50.',
   },
   {
@@ -861,7 +863,7 @@ export const products: Product[] = [
     description: 'Sterile Reconstitution Solution',
     shortDesc: '30mL sterile water with 0.9% benzyl alcohol for peptide reconstitution.',
     price: 25,
-    image: '/assets/catalog/vial_bacteriostatic-water.png',
+    image: '/assets/Catalogo/bacteriostatic-water-30ml.jpg',
     specs: '30mL vial',
     purity: 'USP Grade',
     form: 'Liquid',
@@ -904,6 +906,7 @@ export const products: Product[] = [
     description: 'Premium Research Syringes',
     shortDesc: '31 gauge, 5/16" (8mm) insulin syringes for research applications.',
     price: 25,
+    image: '/assets/Catalogo/insulin-syringes-31g.jpg',
     specs: 'Box of 100',
     purity: 'Sterile, single-use',
     form: 'Disposable syringes',

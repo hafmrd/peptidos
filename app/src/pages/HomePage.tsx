@@ -65,16 +65,16 @@ function Hero() {
             {T.stats.map((s, i) => (
               <div
                 key={i}
-                className="glass-card p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+                className="bg-white/8 border border-white/15 backdrop-blur-sm p-6 hover:bg-white/12 hover:border-[#378ADD]/40 hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
               >
-                <div className="text-[#378ADD] mb-3">
+                <div className="text-[#85B7EB] mb-3">
                   {i === 0 && <TrendingUp className="w-6 h-6" />}
                   {i === 1 && <Shield className="w-6 h-6" />}
                   {i === 2 && <Package className="w-6 h-6" />}
                   {i === 3 && <Award className="w-6 h-6" />}
                 </div>
-                <div className="text-3xl font-bold text-[#042C53] mb-1">{s.num}</div>
-                <div className="text-xs text-[#5F5E5A] tracking-wide uppercase">{s.label}</div>
+                <div className="text-3xl font-bold text-white mb-1">{s.num}</div>
+                <div className="text-xs text-[#85B7EB]/70 tracking-wide uppercase">{s.label}</div>
               </div>
             ))}
           </div>
@@ -94,13 +94,13 @@ function TrustBar() {
   const { lang } = useLanguage();
   const T = translations[lang].trust;
   return (
-    <section className="bg-white border-b border-[#E6F1FB]">
-      <div className="max-w-7xl mx-auto section-padding py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section className="bg-[#0d3a6e] border-b border-[#185FA5]/30">
+      <div className="max-w-7xl mx-auto section-padding py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-[#378ADD]/20">
           {T.stats.map((s, i) => (
-            <div key={i} className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-[#042C53]">{s.num}</div>
-              <div className="text-xs text-[#5F5E5A] mt-1 tracking-wide">{s.label}</div>
+            <div key={i} className="text-center px-4">
+              <div className="text-2xl md:text-3xl font-bold text-[#378ADD]">{s.num}</div>
+              <div className="text-xs text-[#85B7EB]/70 mt-1 tracking-wide uppercase">{s.label}</div>
             </div>
           ))}
         </div>
@@ -118,7 +118,7 @@ function FeaturedProducts() {
   const saleProducts = getSaleProducts();
 
   return (
-    <section id="products" className="py-24 bg-[#F1EFE8]">
+    <section id="products" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-16">
           <span className="text-[#378ADD] text-xs tracking-[0.3em] uppercase font-semibold">
@@ -260,7 +260,7 @@ function Quality() {
     <Hexagon className="w-8 h-8" />,
   ];
   return (
-    <section id="quality" className="py-24 bg-white">
+    <section id="quality" className="py-24 bg-[#F8FAFD]">
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-16">
           <span className="text-[#378ADD] text-xs tracking-[0.3em] uppercase font-semibold">
@@ -272,13 +272,14 @@ function Quality() {
           <p className="text-[#5F5E5A] max-w-2xl mx-auto">{T.desc}</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {T.items.map((q, i) => (
             <div
               key={i}
-              className="group p-8 border border-[#E6F1FB] hover:border-[#378ADD]/30 hover:shadow-lg transition-all duration-300 bg-[#F1EFE8]/50"
+              className="group p-8 border border-[#D4E5F5] hover:border-[#378ADD] hover:shadow-xl transition-all duration-300 bg-white relative overflow-hidden"
             >
-              <div className="text-[#378ADD] mb-4 group-hover:scale-110 transition-transform">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#378ADD] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-14 h-14 bg-[#EAF3FC] group-hover:bg-[#378ADD] text-[#378ADD] group-hover:text-white flex items-center justify-center mb-5 transition-all duration-300">
                 {icons[i]}
               </div>
               <h3 className="text-lg font-bold text-[#042C53] mb-2">{q.title}</h3>
